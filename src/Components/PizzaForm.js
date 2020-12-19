@@ -158,7 +158,7 @@ export default function PizzaForm(props){
             ></textarea>
             </div>
         <Link to="/confirmation">
-       <button disabled={disabled}>Finish Order</button>
+       <button id="submit" disabled={disabled}>Finish Order</button>
        </Link>
         </form>
     )
