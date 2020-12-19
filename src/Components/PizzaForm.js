@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export default function PizzaForm(props){
     const {values, submit,change,disabled,errors} = props;
@@ -27,6 +28,7 @@ export default function PizzaForm(props){
         <div className="form-group inputs">
             <h2>Create Your Pizza Order </h2>
         <div className="pizza-title">Name</div> 
+        <div>{errors.name}</div>
             <input
                 name="name"
                 type="text"    
@@ -45,6 +47,7 @@ export default function PizzaForm(props){
                 <option value="small">Small</option>
             </select>
         <div className="pizza-title">Sauce</div>
+        <div>{errors.sauce}</div>
             <label>Red Sauce
                 <input
                     type="radio"
@@ -109,8 +112,8 @@ export default function PizzaForm(props){
             <label>Sausage
             <input 
                 type="checkbox"
-                name="pepperoni"
-                checked={values.pepperoni}
+                name="sausage"
+                checked={values.sausage}
                 onChange={onChange}
             />
             </label>
@@ -154,8 +157,9 @@ export default function PizzaForm(props){
                 onChange={onChange}    
             ></textarea>
             </div>
-        
+        <Link to="/confirmation">
        <button disabled={disabled}>Finish Order</button>
+       </Link>
         </form>
     )
 

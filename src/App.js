@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Link,Route,Switch} from 'react-router-dom'
 import './App.css'
 import PizzaForm from './Components/PizzaForm'
@@ -6,6 +6,7 @@ import img from './Assets/Pizza.jpg'
 import axios from 'axios'
 import * as yup from 'yup'
 import schema from './validation/schema'
+import Confirmation from './Components/confirmation'
 
 
 const initialFormValues = {
@@ -52,9 +53,10 @@ const App = () => {
 
   const postPizza = (newPizza) => {
     axios
-      .post('https://reqres.in/api/',newPizza)
+      .post('https://reqres.in/api/users',newPizza)
       .then((res)=>{
         setPizza([res.data],...pizza);
+        console.log('this is post',newPizza)
         setFormValues(initialFormValues)
       })
       .catch((err) => {
@@ -79,7 +81,17 @@ const App = () => {
           [name]:err.errors[0]
         })
       })
+      setFormValues({
+        ...formValues,
+        [name]:value
+        })
   }
+    useEffect(()=> {
+      schema.isValid(formValues).then((valid)=>{
+        setDisabled(!valid);
+      })
+    })
+
 
   //submit call back
   const formSubmit = ()=>{
@@ -126,7 +138,11 @@ const App = () => {
       />
     </Route>
       
-      
+    <Route path="/confirmation">
+      <Confirmation 
+        pizza={formSubmit}
+      />
+      </Route> 
 
 
 

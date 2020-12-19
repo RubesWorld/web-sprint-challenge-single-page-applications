@@ -141,16 +141,23 @@ button {
   color: rgb(30, 220, 20);
   background-color: white;
   border: 2px solid rgb(30, 220, 20);
-  &:hover {
+}
+
+button:hover {
     cursor: pointer;
   }
-  &:disabled {
+button:disabled {
     color: crimson;
     background-color: white;
     border: 2px solid crimson;
     cursor: not-allowed;
   }
+
+button:focus {
+  background-color: black;
 }
+
+
 .errors {
   margin: 8px;
   font-size: 0.7em;
@@ -161,6 +168,8 @@ button {
     margin-top: 4px;
   }
 }
+
+
 
 .pizza-title{
   min-height: 3vh;
